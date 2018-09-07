@@ -6,9 +6,10 @@ const textForm = document.querySelector("form");
 const textInput = document.querySelector("#text-input");
 const voiceSelect = document.querySelector("#voice-select");
 const rate = document.querySelector("#rate");
-const rateValue = document.querySelector("#rateValue");
+const rateValue = document.querySelector("#rate-value");
 const pitch = document.querySelector("#pitch");
-const pitchValue = document.querySelector("#pitchValue");
+const pitchValue = document.querySelector("#pitch-value");
+const body = document.querySelector("body");
 
 // Init Voice Array
 let voices = [];
@@ -45,11 +46,17 @@ const speak = () => {
     return;
   }
   if (textInput.value !== "") {
+    // Add backgroud animation
+    body.style.background = "#141414 url(img/wave.gif)";
+    body.style.backgroundRepeat = "reapeat-x";
+    body.style.backgroundSize = "100% 100%";
+
     // Get Speak Text
     const speakText = new SpeechSynthesisUtterance(textInput.value);
     // End of speech
     speakText.onend = e => {
       console.log("Done Speaking...");
+      body.style.background = "#141414";
     };
 
     // Speak error
